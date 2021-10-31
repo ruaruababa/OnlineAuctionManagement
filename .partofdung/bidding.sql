@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2021 lúc 05:54 PM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Oct 31, 2021 at 06:05 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,198 +18,158 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bidding`
+-- Database: `bt1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bids`
+-- Table structure for table `add_products`
 --
 
-CREATE TABLE `bids` (
-  `id` int(30) NOT NULL,
-  `user_id` int(30) NOT NULL,
-  `product_id` int(30) NOT NULL,
-  `bid_amount` float NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=bid,2=confirmed,3=cancelled',
-  `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `add_products` (
+  `p_id` int(11) NOT NULL,
+  `p_name` varchar(30) NOT NULL,
+  `category` varchar(30) NOT NULL,
+  `price` varchar(30) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `desp` varchar(255) NOT NULL,
+  `date_end` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `bids`
+-- Dumping data for table `add_products`
 --
 
-INSERT INTO `bids` (`id`, `user_id`, `product_id`, `bid_amount`, `status`, `date_created`) VALUES
-(2, 5, 1, 7500, 1, '2020-10-27 14:18:50'),
-(4, 5, 3, 155000, 1, '2020-10-27 16:37:29');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `categories`
---
-
-CREATE TABLE `categories` (
-  `category_id` int(30) NOT NULL,
-  `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `categories`
---
-
-INSERT INTO `categories` (`category_id`, `name`) VALUES
-(1, 'Sample Category'),
-(2, 'Appliances'),
-(3, 'Desktop Computers'),
-(4, 'Laptop'),
-(5, 'Mobile Phone'),
-(6, 'Oto');
+INSERT INTO `add_products` (`p_id`, `p_name`, `category`, `price`, `image`, `desp`, `date_end`) VALUES
+(7, 'sample design', 'Painting', '3500', 'audi.jpg', 'Looking good', '0000-00-00'),
+(5, 'Android Logo', 'Mat Painting', '25000', 'Android_logo.jpg', 'Nice Logo', '0000-00-00'),
+(6, 'Umberla', 'Mat Painting', '800', 'umberla.jpg', 'Nice Design', '0000-00-00'),
+(12, 'iphone 13', 'dienthoai', '499', 'iphone.jpg', 'New phone ', '0000-00-00'),
+(13, 'Hp', 'laptop', '700', 'laptop.jpg', 'very good', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `products` (
-  `product_id` int(30) NOT NULL,
-  `category_id` int(30) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `start_bid` float NOT NULL,
-  `regular_price` float NOT NULL,
-  `bid_end_datetime` datetime NOT NULL,
-  `img_fname` text NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `admin` (
+  `admin` varchar(20) NOT NULL,
+  `pwd` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `products` (`product_id`, `category_id`, `name`, `description`, `start_bid`, `regular_price`, `bid_end_datetime`, `img_fname`, `date_created`) VALUES
-(1, 5, 'Sample Smart Phone', 'Sample only', 7000, 7000, '2020-10-27 19:00:00', '1.jpg', '2020-10-27 09:50:54'),
-(3, 1, 'Gadget Package', 'Sample ', 150000, 15000, '2020-10-27 17:00:00', '3.jpg', '2020-10-27 09:59:39'),
-(4, 6, 'Lambogini', 'Style of teenager', 700000, 1500000, '2021-10-26 20:00:00', '4.jpg', '2021-10-26 22:50:07');
+INSERT INTO `admin` (`admin`, `pwd`) VALUES
+('admin', 'admin123'),
+('dinhduy', '12345');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `system_settings`
+-- Table structure for table `bidding`
 --
 
-CREATE TABLE `system_settings` (
-  `id` int(30) NOT NULL,
-  `name` text NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `contact` varchar(20) NOT NULL,
-  `cover_img` text NOT NULL,
-  `about_content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `bidding` (
+  `bid_id` int(3) NOT NULL,
+  `date` date NOT NULL,
+  `product_name` varchar(30) NOT NULL,
+  `category` varchar(30) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `bid_price` varchar(20) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `add` varchar(100) NOT NULL,
+  `ph` bigint(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `system_settings`
+-- Dumping data for table `bidding`
 --
 
-INSERT INTO `system_settings` (`id`, `name`, `email`, `contact`, `cover_img`, `about_content`) VALUES
-(1, 'Simple Online Bidding System', 'info@sample.comm', '+6948 8542 623', '1603344720_1602738120_pngtree-purple-hd-business-banner-image_5493.jpg', '&lt;p style=&quot;text-align: center; background: transparent; position: relative;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: &amp;quot;Open Sans&amp;quot;, Arial, sans-serif; font-weight: 400; text-align: justify;&quot;&gt;&amp;nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&rsquo;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center; background: transparent; position: relative;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center; background: transparent; position: relative;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;');
+INSERT INTO `bidding` (`bid_id`, `date`, `product_name`, `category`, `price`, `bid_price`, `name`, `email`, `add`, `ph`) VALUES
+(6, '2014-04-01', 'sample design', 'Painting', '3500', '4200', 'Sujith', 'sujith@gmail.com', 'Kerala', 9845475987),
+(2, '2014-04-03', 'sample design', 'Painting', '3500', '4000', 'sailesh', 'sailu@gmail.com', 'Coimbatore', 8122549775),
+(5, '2014-04-02', 'Android Logo', 'Mat Painting', '25000', '3200', 'sailesh', 'sailu@gmail.com', 'Sulur', 8122549775),
+(4, '2014-04-03', 'Android Logo', 'Mat Painting', '25000', '3200', 'sujith', 'sujit@gmail.com', 'Coimbatore', 987454212),
+(8, '2021-10-30', 'Umberla', 'Mat Painting', '800', '1000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
+(9, '2021-10-31', 'iphone 13', 'dienthoai', '499', '500', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
+(10, '2021-10-31', 'Android Logo', 'Mat Painting', '25000', '30000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
+(11, '2021-10-31', 'Hp', 'laptop', '700', '800', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `user_registration`
 --
 
-CREATE TABLE `users` (
-  `user_id` int(30) NOT NULL,
-  `name` text NOT NULL,
-  `username` varchar(200) NOT NULL,
-  `password` text NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `contact` varchar(100) NOT NULL,
-  `address` text NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 2 COMMENT '1=Admin,2=Subscriber',
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `user_registration` (
+  `user_id` int(11) NOT NULL,
+  `f_name` varchar(30) NOT NULL,
+  `l_name` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `pass` varchar(150) NOT NULL,
+  `dob` varchar(30) NOT NULL,
+  `gender` varchar(30) NOT NULL,
+  `address` varchar(30) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `user_registration`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `email`, `contact`, `address`, `type`, `date_created`) VALUES
-(1, 'Administrator', 'admin', '0192023a7bbd73250516f069df18b500', 'admin@admin.com', '+123456789', '', 1, '2020-10-27 09:19:59'),
-(5, 'John Smith', 'jsmith', '1254737c076cf867dc53d60a0364f38e', 'jsmith@sample.com', '+18456-5455-55', 'Sample', 2, '2020-10-27 14:18:32'),
-(6, 'David Alaba', 'alaba', 'e10adc3949ba59abbe56e057f20f883e', '', '', '', 2, '2021-10-27 15:50:02');
+INSERT INTO `user_registration` (`user_id`, `f_name`, `l_name`, `email`, `pass`, `dob`, `gender`, `address`, `phone`, `code`, `status`) VALUES
+(21, 'dinh', 'duy', 'dinhduy2012001@gmail.com', '$2y$10$dKUfVZ0.u3N.p2.7meGHN.EPJaMsWMHoCIZ0HXUA5hvH4Cj4Fhlzy', '2001-10-20', 'male', 'thai binh', '0921581712', '294ad15bcc36721a4dd03d0580b68f46', 0);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `bids`
+-- Indexes for table `add_products`
 --
-ALTER TABLE `bids`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `add_products`
+  ADD PRIMARY KEY (`p_id`);
 
 --
--- Chỉ mục cho bảng `categories`
+-- Indexes for table `bidding`
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`category_id`);
+ALTER TABLE `bidding`
+  ADD PRIMARY KEY (`bid_id`);
 
 --
--- Chỉ mục cho bảng `products`
+-- Indexes for table `user_registration`
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Chỉ mục cho bảng `system_settings`
---
-ALTER TABLE `system_settings`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `users`
---
-ALTER TABLE `users`
+ALTER TABLE `user_registration`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `bids`
+-- AUTO_INCREMENT for table `add_products`
 --
-ALTER TABLE `bids`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `add_products`
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `categories`
+-- AUTO_INCREMENT for table `bidding`
 --
-ALTER TABLE `categories`
-  MODIFY `category_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `bidding`
+  MODIFY `bid_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `user_registration`
 --
-ALTER TABLE `products`
-  MODIFY `product_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT cho bảng `system_settings`
---
-ALTER TABLE `system_settings`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `user_registration`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
