@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 if (isset($_POST['button'])) {
   $email = $_POST['name'];
   $password = $_POST['pass'];
@@ -15,11 +16,14 @@ if (isset($_POST['button'])) {
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $pass_hash = $row['pass'];
-
+    echo $pass_hash;
+    echo "<br>";
+    echo $password;
     if (password_verify($password, $pass_hash)) {
-      echo 'Đăng nhập thành công';
-      $_SESSION['loginOK'] = $admin;
-      header("location:user_profile.php");
+
+      echo 'ok';
+      $_SESSION['loginOK'] = $email;
+      header("location:user-inside_new.php");
     } else {
       echo 'mật khẩu không chính xác';
     }
