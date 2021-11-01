@@ -12,126 +12,82 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-    .nav-color {
-        color: black;
-        font-size: 20px;
-    }
-
-    </style>
 </head>
 
 <body>
-    <header>
-        <div class="container-fluid bg-success fixed-top">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active current nav-color" aria-current="page" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active nav-color" aria-current="page" href="product.php">Product</a>
-                </li>
-                <li class="nav-item nav-color">
-                    <a class="nav-link nav-color" href="contact.php">Contact US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-color" href="admin.php">Admin login</a>
-                </li>
-            </ul>
-    </header>
-    <!-- Wrapper container -->
-    <div class="container py-4 mt-5">
+    <?php
+    include('navbar.php');
+    ?>
+    <div class="title text-center mt-5 mb-5">
+        <h2>About Us</h2>
+        <span>Hotline: 1900100Co</span>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 child">
+            <div class="bg-white rounded shadow-sm"><img src="images/duy.png" alt="" class="img-fluid card-img-top">
+                <div class="p-4">
+                    <h5> <a href="#" class="text-dark">Nguyen Dinh Duy</a></h5>
+                    <p class="small text-muted mb-0">Sinh viên khoa CNTT ĐH Thuỷ Lợi</p>
+                    <div class="d-flex align-items-center justify-content-around rounded-pill bg-light px-3 py-2 mt-4">
+                        <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold"><a
+                                    class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;"
+                                    href="https://www.facebook.com/duy.deiu" role="button"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <!-- Twitter -->
 
-        <!-- Bootstrap 5 starter form -->
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-
-            <!-- Name input -->
-            <div class="mb-3">
-                <label class="form-label" for="name">Name</label>
-                <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
-            </div>
-
-            <!-- Email address input -->
-            <div class="mb-3">
-                <label class="form-label" for="emailAddress">Email Address</label>
-                <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"
-                    data-sb-validations="required, email" />
-                <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;"
+                                    href="https://github.com/Dinhduy01" role="button"><i
+                                        class="fab fa-github"></i></a></span>
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <!-- Message input -->
-            <div class="mb-3">
-                <label class="form-label" for="message">Message</label>
-                <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"
-                    data-sb-validations="required"></textarea>
-                <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 child">
+            <div class="bg-white rounded shadow-sm">
+                <img src="images/scf.jpeg" alt="" class="img-fluid card-img-top">
+                <div class="p-4">
+                    <h5> <a href="#" class="text-dark">Nguyen Ngoc Giang</a></h5>
+                    <p class="small text-muted mb-0">Sinh viên khoa CNTT ĐH Thuỷ Lợi</p>
+                    <div class="d-flex align-items-center justify-content-around rounded-pill bg-light px-3 py-2 mt-4">
+                        <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold"><a
+                                    class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;"
+                                    href="https://www.facebook.com/Yang1152001/" role="button"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <!-- Twitter -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;"
+                                    href="https://github.com/ruaruababa" role="button"><i
+                                        class="fab fa-github"></i></a></span>
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <!-- Form submissions success message -->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3">Form submission successful!</div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 child">
+            <div class="bg-white rounded shadow-sm"><img src="images/zizuu.jpeg" alt="" class="img-fluid card-img-top">
+                <div class="p-4">
+                    <h5> <a href="#" class="text-dark">Nguyen Van Dung</a></h5>
+                    <p class="small text-muted mb-0">Sinh viên khoa CNTT ĐH Thuỷ Lợi
+                        elit</p>
+                    <div class="d-flex align-items-center justify-content-around rounded-pill bg-light px-3 py-2 mt-4">
+                        <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold"><a
+                                    class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;"
+                                    href="https://www.facebook.com/profile.php?id=100052243369185" role="button"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <!-- Twitter -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;"
+                                    href="https://github.com/DungZizu" role="button"><i
+                                        class="fab fa-github"></i></a></span>
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <!-- Form submissions error message -->
-            <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3">Error sending message!</div>
-            </div>
-
-            <!-- Form submit button -->
-            <div class="d-grid">
-                <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
-            </div>
-
-        </form>
-
+        </div>
     </div>
 
-    <footer class="bg-light text-center text-white mt-lg-5">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0 mt-5">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!"
-                    role="button"><i class="fab fa-facebook-f"></i></a>
-
-                <!-- Twitter -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!"
-                    role="button"><i class="fab fa-twitter"></i></a>
-
-                <!-- Google -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                    role="button"><i class="fab fa-google"></i></a>
-
-                <!-- Instagram -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!"
-                    role="button"><i class="fab fa-instagram"></i></a>
-
-                <!-- Linkedin -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
-                    role="button"><i class="fab fa-linkedin-in"></i></a>
-                <!-- Github -->
-                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;" href="#!"
-                    role="button"><i class="fab fa-github"></i></a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
-            <a class="text-white" href="#">We are one</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-
-    <!-- SB Forms JS -->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </script>
+    <?php
+    include('footer.php');
+    ?>
 </body>
 
 </html>
