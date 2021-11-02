@@ -6,24 +6,27 @@ if (isset($_POST['button'])) {
     $password = $_POST['pass'];
 
 
-    include 'database.php';
+    include '../database.php';
 
 
 
-
-    $a = "SELECT * FROM admin WHERE  admin='$userName' and pwd = '$password'";
+    $a = "SELECT * FROM admin WHERE  admin='$userName'";
     $result = mysqli_query($con, $a);
 
     if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $pass_hash = $row['pwd'];
+        if (password_verify($password, $pass_hash)) {
 
-
-        echo 'Đăng nhập thành công';
-        $_SESSION['loginOK'] = $userName;
-        header("location:index_admin.php");
+            $_SESSION['loginAdmin'] = $userName;
+            header("location:index_admin.php");
+        } else {
+            echo 'mat khau khong chinh xac';
+        }
     } else {
 
-        
-        header("location:admin_login.php");
-        echo '<script> alert("Wrong User Name or Password")</script>';
+
+
+        echo "don't have this user name";
     }
 }
