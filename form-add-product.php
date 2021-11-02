@@ -1,79 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="shortcut icon" href="/images/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-    <?php
-    include('navbar-out.php');
+<?php
+include('navbar-out.php');
 ?>
-    <div style="text-align: center; margin-top: 80px;">
-        <h2>Add Product</h2>
-    </div>
-    <div class="container py-4 w-50">
+<div style="text-align: center; margin-top: 80px;">
+    <h2 class="text-success ">Add Product</h2>
+</div>
+<div class="container py-4 w-50">
 
-        <!-- Bootstrap 5 starter form -->
-        <form id="contactForm">
+    <form action="" method="post">
 
-            <!-- Name input -->
-            <div class="mb-3">
-                <label class="form-label" for="UserName">User Name</label>
-                <input class="form-control" id="name" type="text" placeholder="Name" />
-            </div>
+        <!-- Email address input -->
+        <div class="mb-3">
+            <label class="form-label" for="ProductName">Product Name</label>
+            <input class="form-control" id="product" name="p_name" type="text" placeholder="Product Name" />
+        </div>
 
-            <!-- Email address input -->
-            <div class="mb-3">
-                <label class="form-label" for="ProductName">Product Name</label>
-                <input class="form-control" id="product" type="text" placeholder="Product Name" />
-            </div>
+        <div class="mb-3">
+            <label class="form-label" for="Categories">Categories</label>
+            <select class="form-control" id="category" name="category">
+                <option value="mobile">Điện thoại</option>
+                <option value="laptop">Laptop</option>
+                <option value="car">Xe</option>
+                <option value="tivi">TV</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="Price">Price</label>
 
-            <div class="mb-3">
-                <label class="form-label" for="Categories">Categories</label>
-                <input class="form-control" id="categories" type="text" placeholder="Categories" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="Price">Price</label>
-                <input class="form-control" id="price" type="number" placeholder="Price" />
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Upload Image</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
+            <input class="form-control" id="price" name="price" type=" text" placeholder="Price" />
+        </div>
 
-            <!-- Message input -->
-            <div class="mb-3">
-                <label class="form-label" for="message">Description</label>
-                <textarea class=" form-control" id="message" type="text" placeholder="Message"
-                    style="height: 10rem;"></textarea>
-            </div>
+        <div class="mb-3">
+            <input type="hidden" id="date_start" name="date_start" class="form-control form-control-lg"
+                value="<?php echo date("Y/m/d") ?>" />
 
-            <!-- Form submit button -->
-            <div class="d-grid w-25">
-                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-            </div>
+        </div>
 
-        </form>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Image</label>
+            <input class="form-control" type="file" name="image" id="formFile">
+        </div>
 
-    </div>
+        <!-- Message input -->
+        <div class="mb-3">
+            <label class="form-label" for="message">Description</label>
+            <textarea class=" form-control" id="message" name="desp" type="text" placeholder="Message"
+                style="height: 10rem;"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Date End</label>
+            <input class="form-control" type="date" name="date_end" id="date_end">
+        </div>
 
-    <?php
-        include('footer.php');
-    ?>
+        <!-- Form submit button -->
+        <div class="d-grid w-25">
+            <button class="btn btn-primary btn-lg" type="submit" name="button">Submit</button>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
+    </form>
 
-</html>
+    .<?php
+
+        include 'database.php';
+        if (isset($_POST['button'])) {
+            $sql = "SELECT * FROM user_registration where email ='$name'and status = 1";
+            $result = mysqli_query($con, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $id = $row['user_id'];
+                }
+                $p_name = $_POST['p_name'];
+                $category = $_POST['category'];
+                $price = $_POST['price'];
+                $image = $_POST['image'];
+                $desp = $_POST['desp'];
+                $date_start = $_POST['date_start'];
+                $date_end = $_POST['date_end'];
+
+                $sql1 = "INSERT INTO add_products ( p_name, category, price , date_start, image, desp,user_id,date_end) VALUES ('$p_name', '$category', '$price','$date_start', '$image', '$desp','$id','$date_end')";
+                if (mysqli_query($con, $sql1)) {
+
+                    header("location:user-inside_new.php");
+                } else {
+                    echo mysqli_error($con);
+                }
+            } else {
+                echo "<script>alert ('Please active your email')</script>";
+            }
+        }
+
+
+
+        ?>
+</div>
+<?php
+
+
+
+
+
+// Escape user inputs for security
+
+
+
+
+include('footer.php');
+?>
