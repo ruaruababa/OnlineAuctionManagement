@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2021 at 06:05 AM
+-- Generation Time: Nov 02, 2021 at 11:47 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -32,8 +32,10 @@ CREATE TABLE `add_products` (
   `p_name` varchar(30) NOT NULL,
   `category` varchar(30) NOT NULL,
   `price` varchar(30) NOT NULL,
+  `date_start` date NOT NULL,
   `image` varchar(50) NOT NULL,
   `desp` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `date_end` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -41,12 +43,16 @@ CREATE TABLE `add_products` (
 -- Dumping data for table `add_products`
 --
 
-INSERT INTO `add_products` (`p_id`, `p_name`, `category`, `price`, `image`, `desp`, `date_end`) VALUES
-(7, 'sample design', 'Painting', '3500', 'audi.jpg', 'Looking good', '0000-00-00'),
-(5, 'Android Logo', 'Mat Painting', '25000', 'Android_logo.jpg', 'Nice Logo', '0000-00-00'),
-(6, 'Umberla', 'Mat Painting', '800', 'umberla.jpg', 'Nice Design', '0000-00-00'),
-(12, 'iphone 13', 'dienthoai', '499', 'iphone.jpg', 'New phone ', '0000-00-00'),
-(13, 'Hp', 'laptop', '700', 'laptop.jpg', 'very good', '0000-00-00');
+INSERT INTO `add_products` (`p_id`, `p_name`, `category`, `price`, `date_start`, `image`, `desp`, `user_id`, `date_end`) VALUES
+(25, 'BMW', 'car', '50000', '0000-00-00', 'bmw.jpg', 'Super car', 21, '0000-00-00'),
+(24, 'Note10 pro', 'mobile', '300', '0000-00-00', 'note10.jpg', 'Xiaomi note 10', 21, '0000-00-00'),
+(20, 'iphone', 'mobile', '500', '0000-00-00', 'iphone.jpg', '1212', 21, '0000-00-00'),
+(23, 'poco x3 pro', 'mobile', '250', '0000-00-00', 'pocox3.jpg', 'Xiaomi Gaming', 21, '0000-00-00'),
+(22, 'hp15', 'laptop', '499', '0000-00-00', 'laptop.jpg', 'updtae', 21, '0000-00-00'),
+(21, 'iphone', 'car', '700', '0000-00-00', 'iphone.jpg', '900', 21, '0000-00-00'),
+(26, 'BMW', 'car', '50000', '0000-00-00', 'bmw.jpg', 'Super car', 21, '0000-00-00'),
+(27, 'hp15', 'laptop', '499', '2021-11-02', '2021-11-24', '2121', 21, '0000-00-00'),
+(28, 'hp15', 'mobile', '100', '2021-11-02', 'bmw.jpg', '1212', 21, '2021-11-27');
 
 -- --------------------------------------------------------
 
@@ -56,7 +62,7 @@ INSERT INTO `add_products` (`p_id`, `p_name`, `category`, `price`, `image`, `des
 
 CREATE TABLE `admin` (
   `admin` varchar(20) NOT NULL,
-  `pwd` varchar(20) NOT NULL
+  `pwd` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -64,8 +70,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin`, `pwd`) VALUES
-('admin', 'admin123'),
-('dinhduy', '12345');
+('dinhduy', '123'),
+('giang', '$2y$10$ye4Gh7kQ2PGL34WGBRbm2uPMHqjOdzlIIOcee/pB33u.COl9H6jBy');
 
 -- --------------------------------------------------------
 
@@ -83,7 +89,7 @@ CREATE TABLE `bidding` (
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `add` varchar(100) NOT NULL,
-  `ph` bigint(10) NOT NULL
+  `ph` varchar(12) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -91,14 +97,15 @@ CREATE TABLE `bidding` (
 --
 
 INSERT INTO `bidding` (`bid_id`, `date`, `product_name`, `category`, `price`, `bid_price`, `name`, `email`, `add`, `ph`) VALUES
-(6, '2014-04-01', 'sample design', 'Painting', '3500', '4200', 'Sujith', 'sujith@gmail.com', 'Kerala', 9845475987),
-(2, '2014-04-03', 'sample design', 'Painting', '3500', '4000', 'sailesh', 'sailu@gmail.com', 'Coimbatore', 8122549775),
-(5, '2014-04-02', 'Android Logo', 'Mat Painting', '25000', '3200', 'sailesh', 'sailu@gmail.com', 'Sulur', 8122549775),
-(4, '2014-04-03', 'Android Logo', 'Mat Painting', '25000', '3200', 'sujith', 'sujit@gmail.com', 'Coimbatore', 987454212),
-(8, '2021-10-30', 'Umberla', 'Mat Painting', '800', '1000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
-(9, '2021-10-31', 'iphone 13', 'dienthoai', '499', '500', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
-(10, '2021-10-31', 'Android Logo', 'Mat Painting', '25000', '30000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712),
-(11, '2021-10-31', 'Hp', 'laptop', '700', '800', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', 921581712);
+(9, '2021-10-31', 'iphone 13', 'dienthoai', '499', '500', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '921581712'),
+(11, '2021-10-31', 'Hp', 'laptop', '700', '800', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '921581712'),
+(12, '2021-10-31', 'Hp', 'laptop', '700', '1000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '921581712'),
+(13, '2021-10-31', 'iphone 13', 'dienthoai', '499', '600', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '921581712'),
+(14, '2021-10-31', 'hp15', 'dienthoai', '100', '500', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '921581712'),
+(15, '2021-10-31', 'iphone 14', 'dienthoai', '499', '500', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '0921581712'),
+(16, '2021-11-01', 'iphone 14', 'dienthoai', '499', '5000', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '0921581712'),
+(20, '2021-11-01', 'hp15', 'laptop', '499', '509', 'duy', 'dinhduy2012001@gmail.com', 'thai binh', '0921581712'),
+(25, '2021-11-01', 'Note10 pro', 'mobile', '300', '310', 'duy', 'spider20102001@gmail.com', '121', '121  ');
 
 -- --------------------------------------------------------
 
@@ -125,7 +132,8 @@ CREATE TABLE `user_registration` (
 --
 
 INSERT INTO `user_registration` (`user_id`, `f_name`, `l_name`, `email`, `pass`, `dob`, `gender`, `address`, `phone`, `code`, `status`) VALUES
-(21, 'dinh', 'duy', 'dinhduy2012001@gmail.com', '$2y$10$dKUfVZ0.u3N.p2.7meGHN.EPJaMsWMHoCIZ0HXUA5hvH4Cj4Fhlzy', '2001-10-20', 'male', 'thai binh', '0921581712', '294ad15bcc36721a4dd03d0580b68f46', 0);
+(22, 'dinh', 'duy', 'spider20102001@gmail.com', '$2y$10$ki/rTGE5PMnz2pKIU0IQNe0SmMneviEEOzxbHZFETNtu39AsIB/ni', '2021-10-03', 'male', '121', '121  ', '3f5fdbd2156faa44e20657980779e53a', 0),
+(21, 'dinh', 'duy', 'dinhduy2012001@gmail.com', '$2y$10$/XzBsBFWihx4SRBmADNXI.LF3h3OyZF7qhUVOGd.NMXhKuBQVKAJO', '2001-10-20', 'male', '1212', '2121  ', '294ad15bcc36721a4dd03d0580b68f46', 1);
 
 --
 -- Indexes for dumped tables
@@ -135,7 +143,8 @@ INSERT INTO `user_registration` (`user_id`, `f_name`, `l_name`, `email`, `pass`,
 -- Indexes for table `add_products`
 --
 ALTER TABLE `add_products`
-  ADD PRIMARY KEY (`p_id`);
+  ADD PRIMARY KEY (`p_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `bidding`
@@ -157,19 +166,19 @@ ALTER TABLE `user_registration`
 -- AUTO_INCREMENT for table `add_products`
 --
 ALTER TABLE `add_products`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `bidding`
 --
 ALTER TABLE `bidding`
-  MODIFY `bid_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `bid_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_registration`
 --
 ALTER TABLE `user_registration`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
