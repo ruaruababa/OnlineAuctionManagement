@@ -21,6 +21,8 @@ if (isset($_POST['bidding'])) {
     $result1 = mysqli_query($con, $sql);
     if (mysqli_num_rows($result1) > 0) {
         while ($row = mysqli_fetch_array($result1)) {
+            $email=$row['email'];
+            $f_name = $row['f_name'];
             $l_name = $row['l_name'];
             $add = $row['address'];
             $ph = $row['phone'];
@@ -34,8 +36,8 @@ if (isset($_POST['bidding'])) {
 
         $date = date("Y/m/d");
 
-
-        $sql2 = "insert into bidding  values('','$date','$name1','$category_','$price','$price'+'$price_bid','$l_name','$name','$add','$ph')";
+        $fullname = $f_name. " " .$l_name;
+        $sql2 = "insert into bidding(`date`, `product_name`, `category`, `price`, `bid_price`, `name`, `email`, `add`, `ph`) values('$date','$name1','$category_','$price','$price'+'$price_bid','$fullname','$email','$add','$ph')";
         $result2 = mysqli_query($con, $sql2);
         if ($result2) {
             echo 'đấu giá thành công';
