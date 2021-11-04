@@ -26,22 +26,16 @@ include 'navbar-out.php';
 
                     include 'database.php';
                     $sql = "SELECT * FROM bidding where email ='$name'";
+                    // Hiển thị những sản phẩm mà người dùng đã đấu giá
                     $result = mysqli_query($con, $sql);
-
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-
 
                             echo '<tr>';
                             echo '<th scope="row">' . $row['bid_id'] . '</th>';
                             echo '<td>' . $row['product_name'] . ' </td>';
                             echo '<td>' . $row['category'] . '</td>';
                             echo '<td>' . $row['bid_price'] . '</td>';
-
-
-
-
-
                             echo '</tr>';
                         }
                     }
